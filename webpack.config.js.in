@@ -1,0 +1,63 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  name: "${ROUTIN_MODULE}",
+  mode: "production",
+  devtool: "inline-source-map",
+  resolve: {
+    extensions: [".js", ".ts", ".scss"],
+    modules: ["./node_modules/"]
+  },
+  module: {
+    rules: [
+      { 
+        test: /\.ts$/,
+        use: "ts-loader",
+        exclude: "/node_modules/"
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          { loader: "css-loader" },
+          {
+            loader: "sass-loader",
+            options: {
+              warnRuleAsWarning: true,
+              sourceMap: false,
+              sassOptions: {
+                outputStyle: "compressed",
+                includePaths: ["${ROUTIN_SRC}"]
+              }
+            }
+          }
+        ],
+        exclude: "/node_modules/"
+      },
+      {
+        test: /\.(png|jpg|svg)$/i,
+        type: "asset/resource"
+      },
+      {
+        test: /\.html$/,
+        use: "html-loader",
+        exclude: "/node_modules/"
+      }
+    ]
+  },
+  output: {
+    path: "${ROUTIN_DIST}",
+    filename: "${ROUTIN_MODULE}.js",
+    assetModuleFilename: "img/[hash][ext][query]",
+    clean: true
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "${ROUTIN_MODULE}.css"
+    }),
+    new HtmlWebpackPlugin({
+      template: "${ROUTIN_SRC}/html/index.html"
+    })
+  ]
+}

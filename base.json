@@ -1,0 +1,80 @@
+{
+    "projet": {
+        "nom": "routin",
+        "version": [
+            0,
+            0,
+            0
+        ],
+        "org": "tensaiji",
+        "description": "Gestion de routines quotidiennes.",
+        "url": "tensaiji/routin",
+        "profils": [
+            "resrc.cmake"
+        ],
+        "env": {
+            "SRC": "src",
+            "DIST": "dist",
+            "README_PROJET": "€{BASE_PROJET_NOM}",
+            "CMAKE_PREFIX": "ROUTIN_",
+            "RESSOURCE_GITIGNORE": [
+                "package*.json",
+                "node_modules",
+                "*.d.ts",
+                "€{DIST}",
+                "tsconfig.json",
+                "webpack.config.js"
+            ],
+            "RESSOURCE_CMAKELISTS": {
+                "constantes": {
+                    "€{CMAKE_PREFIX}MODULE": "€{BASE_PROJET_NOM}",
+                    "€{CMAKE_PREFIX}SRC": "${CMAKE_CURRENT_LIST_DIR}/€{SRC}",
+                    "€{CMAKE_PREFIX}DIST": "${CMAKE_CURRENT_LIST_DIR}/€{DIST}",
+                    "€{CMAKE_PREFIX}PACKAGE": "${CMAKE_CURRENT_LIST_DIR}/package.json",
+                    "€{CMAKE_PREFIX}TSCONFIG": "${CMAKE_CURRENT_LIST_DIR}/tsconfig.json",
+                    "€{CMAKE_PREFIX}WEBPACK_CONFIG": "${CMAKE_CURRENT_LIST_DIR}/webpack.config.js"
+                },
+                "configs": [
+                    "${€{CMAKE_PREFIX}PACKAGE}",
+                    "${€{CMAKE_PREFIX}TSCONFIG}",
+                    "${€{CMAKE_PREFIX}WEBPACK_CONFIG}"
+                ]
+            },
+            "RESSOURCE_MAKEFILE": {
+                "dev": [
+                    [
+                        "cmake"
+                    ],
+                    "@-npx webpack -w"
+                ],
+                "dist": [
+                    [
+                        "cmake"
+                    ],
+                    "@-npx webpack"
+                ],
+                "clean.dist": [
+                    [],
+                    "@-rm -rf €{DIST}"
+                ],
+                "clean.ts": [
+                    [],
+                    "@-rm -rf €{SRC}/*.d.ts"
+                ],
+                "clear": [
+                    [],
+                    "@-rm -rf node_modules package-lock.json"
+                ],
+                "install": [
+                    [
+                        "cmake"
+                    ],
+                    "@-npm install"
+                ]
+            },
+            "MAKE_ALL": "clean dist",
+            "MAKE_CLEAN": "clean.dist clean.ts"
+        }
+    },
+    "version": "0.27.3"
+}

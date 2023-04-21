@@ -1,0 +1,14 @@
+{
+  "include": ["${ROUTIN_SRC}/**/*"],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "outDir": "${ROUTIN_DIST}",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "bundler",
+    "removeComments": true,
+    "skipLibCheck": true,
+    "sourceMap": false
+  }
+}
