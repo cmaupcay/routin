@@ -1,6 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const racine = __dirname + require('path').sep;
+
 module.exports = {
   name: "routin",
   mode: "production",
@@ -28,7 +30,7 @@ module.exports = {
               sourceMap: false,
               sassOptions: {
                 outputStyle: "compressed",
-                includePaths: ["/home/user/repos/routin/src"]
+                includePaths: [racine + "src"]
               }
             }
           }
@@ -47,7 +49,7 @@ module.exports = {
     ]
   },
   output: {
-    path: "/home/user/repos/routin/dist",
+    path: racine + "dist",
     filename: "routin.js",
     assetModuleFilename: "img/[hash][ext][query]",
     clean: true
@@ -57,7 +59,7 @@ module.exports = {
       filename: "routin.css"
     }),
     new HtmlWebpackPlugin({
-      template: "/home/user/repos/routin/src/html/index.html"
+      template: racine + "src/html/index.html"
     })
   ]
 }

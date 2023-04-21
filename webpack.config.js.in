@@ -1,6 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const racine = __dirname + require('path').sep;
+
 module.exports = {
   name: "${ROUTIN_MODULE}",
   mode: "production",
@@ -28,7 +30,7 @@ module.exports = {
               sourceMap: false,
               sassOptions: {
                 outputStyle: "compressed",
-                includePaths: ["${ROUTIN_SRC}"]
+                includePaths: [racine + "${ROUTIN_SRC}"]
               }
             }
           }
@@ -47,7 +49,7 @@ module.exports = {
     ]
   },
   output: {
-    path: "${ROUTIN_DIST}",
+    path: racine + "${ROUTIN_DIST}",
     filename: "${ROUTIN_MODULE}.js",
     assetModuleFilename: "img/[hash][ext][query]",
     clean: true
@@ -57,7 +59,7 @@ module.exports = {
       filename: "${ROUTIN_MODULE}.css"
     }),
     new HtmlWebpackPlugin({
-      template: "${ROUTIN_SRC}/html/index.html"
+      template: racine + "${ROUTIN_SRC}/html/index.html"
     })
   ]
 }
