@@ -1,0 +1,14 @@
+{
+  "include": ["/home/user/repos/routin/src/**/*"],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "outDir": "/home/user/repos/routin/dist",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "bundler",
+    "removeComments": true,
+    "skipLibCheck": true,
+    "sourceMap": false
+  }
+}

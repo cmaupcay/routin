@@ -18,12 +18,10 @@
             "README_PROJET": "€{BASE_PROJET_NOM}",
             "CMAKE_PREFIX": "ROUTIN_",
             "RESSOURCE_GITIGNORE": [
-                "package*.json",
+                "package-lock.json",
                 "node_modules",
                 "*.d.ts",
-                "€{DIST}",
-                "tsconfig.json",
-                "webpack.config.js"
+                "€{DIST}"
             ],
             "RESSOURCE_CMAKELISTS": {
                 "constantes": {
@@ -48,9 +46,7 @@
                     "@-npx webpack -w"
                 ],
                 "dist": [
-                    [
-                        "cmake"
-                    ],
+                    [],
                     "@-npx webpack"
                 ],
                 "clean.dist": [

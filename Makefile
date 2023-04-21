@@ -33,7 +33,7 @@ dev: cmake
 	@-npx webpack -w
 .PHONY : dev
 
-dist: cmake
+dist: 
 	@-npx webpack
 .PHONY : dist
 

@@ -1,8 +1,6 @@
 cmake
 bin
-package*.json
+package-lock.json
 node_modules
 *.d.ts
 dist
-tsconfig.json
-webpack.config.js
