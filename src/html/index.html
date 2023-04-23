@@ -14,20 +14,37 @@
     <section id="routin-contenu" class="ferme">
         <div id="routin-controles">
             <input type="password" class="mdp">
-            <button class="sauvegarder">Sauvegarder</button>
+            <button id="routin-sauvegarder">Sauvegarder</button>
+            <button id="routin-exporter">Exporter</button>
+            <button id="routin-importer">Importer</button>
             <h5 class="message"></h5>
         </div>
         <div id="routin-routines">
+            <h2>Routines</h2>
             <div id="routin-routines-ajout">
+                <h3>Ajouter une routine</h3>
                 <input type="text" class="nom" placeholder="Nom de la routine">
+                <input type="number" class="objectif" placeholder="Objectif quotidien" min="0">
+                <select class="type"></select>
                 <button class="ajouter">Ajouter</button>
             </div>
-            <div class="liste">
-                <ul>
-                    
-                </ul>
+            <div id="routin-routines-liste">
+                <h3>>Toutes vos routines</h3>
+                <ul></ul>
             </div>
         </div>
+        <div id="routin-performances">
+            <h2>Performances</h2>
+            <div id="routin-performances-actuelles">
+                <h3 class="date"></h3>
+                <ul></ul>
+            </div>
+            <div id="routin-performances-historique">
+                <h3>Votre historique</h3>
+                <ul></ul>
+            </div>
+        </div>
+        <span id="routin-sync"></span>
     </section>
     <section id="routin-init">
         <h2>Mot de passe</h2>

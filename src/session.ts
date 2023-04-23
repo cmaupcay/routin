@@ -7,7 +7,8 @@ const ERREUR_SAUVER = "Impossible de sauvegarder les informations localement.";
 
 const defaut = (): Session => {
     return {
-        routines: []
+        routines: [],
+        historique: new Map()
     }
 };
 
@@ -26,6 +27,6 @@ export const effacer = async () => cookie.supprimer(COOKIE);
 
 export const init = async (mdp: string) => {
     if (cookie.existe(COOKIE))
-        return charger(mdp).then(() => {});
+        return charger(mdp).then(_data => data = _data);
     else return cookie.ecrire(COOKIE, data, mdp);
 };

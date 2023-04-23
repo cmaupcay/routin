@@ -7,7 +7,11 @@ import "./style.scss"
 const init = async () => ui_session.init(
     session.effacer,
     mdp => session.init(mdp).then(
-        () => ui_contenu.init(session.sauver)
+        () => ui_contenu.init(
+            session.data.routines,
+            session.data.historique,
+            session.sauver
+        )
     )
 );
 

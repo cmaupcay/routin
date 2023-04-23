@@ -1,10 +1,10 @@
 import * as ui from "../utils/ui";
 
-const SELECTEUR_FENETRE = "#routin-init";
-const SELECTEUR_MDP = SELECTEUR_FENETRE + ">.mdp";
-const SELECTEUR_MESSAGE = SELECTEUR_FENETRE + ">.message";
-const SELECTEUR_EFFACER = SELECTEUR_FENETRE + ">.effacer";
-const SELECTEUR_ENTRER = SELECTEUR_FENETRE + ">.entrer";
+const SELECTEUR = "#routin-init";
+const SELECTEUR_MDP = SELECTEUR + ">.mdp";
+const SELECTEUR_MESSAGE = SELECTEUR + ">.message";
+const SELECTEUR_EFFACER = SELECTEUR + ">.effacer";
+const SELECTEUR_ENTRER = SELECTEUR + ">.entrer";
 
 const MESSAGE_EFFACEMENT = "Informations locales effacées.";
 
@@ -12,22 +12,22 @@ export type Effacer = () => Promise<void>;
 export type Entrer = (mdp: string) => Promise<void>;
 
 export const init = async (effacer: Effacer, entrer: Entrer) => {
-    const fenetre = document.querySelector(SELECTEUR_FENETRE);
+    const fenetre = ui.selectionner(SELECTEUR);
     ui.ouvrir(fenetre);
-    const mdp = document.querySelector(SELECTEUR_MDP) as HTMLInputElement;
-    const message = document.querySelector(SELECTEUR_MESSAGE) as HTMLInputElement;
+    const mdp = ui.selectionner(SELECTEUR_MDP) as HTMLInputElement;
+    const message = ui.selectionner(SELECTEUR_MESSAGE) as HTMLInputElement;
     // EFFACER
-    document.querySelector(SELECTEUR_EFFACER)?.addEventListener("click",
+    ui.selectionner(SELECTEUR_EFFACER)?.addEventListener("click",
         () => effacer().then(
             () => ui.ecrire(message, MESSAGE_EFFACEMENT),
             (e) => ui.ecrire_erreur(message, e)
         )
     );
     // ENTRER
-    document.querySelector(SELECTEUR_ENTRER)?.addEventListener("click", 
-        () => ui.lire_mdp(mdp).then(
+    ui.selectionner(SELECTEUR_ENTRER)?.addEventListener("click", 
+        () => ui.lire(mdp).then(
             mdp => {
-                if (mdp.length > 0)
+                if (!!mdp)
                     entrer(mdp).then(
                         () => ui.fermer(fenetre),
                         e => ui.ecrire_erreur(message, e)

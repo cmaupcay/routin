@@ -1,5 +1,14 @@
 .ferme
 {
-    height: 0vh;
-    opacity: 0;
+    display: none;
+}
+
+input.erreur
+{
+    border-color: red;
+}
+
+.message.erreur
+{
+    color: red;
 }

@@ -1,11 +1,16 @@
 import * as controles from "./contenu/controles";
+import * as data from "./contenu/data";
 import * as routines from "./contenu/routines";
 import * as ui from "../utils/ui";
 
-const SELECTEUR_FENETRE = "#routin-contenu";
+import { Routines } from "../types/Routines";
+import { Historique } from "../types/Historique";
 
-export const init = async (sauvegarder: controles.Sauvegarder) => {
-    ui.ouvrir(document.querySelector(SELECTEUR_FENETRE));
-    controles.init(sauvegarder);
+const SELECTEUR = "#routin-contenu";
+
+export const init = async (_routines: Routines, _historique: Historique, _sauvegarder: data.Sauvegarder) => {
+    ui.ouvrir(ui.selectionner(SELECTEUR));
+    data.init(_routines, _historique, _sauvegarder);
+    controles.init();
     routines.init();
 };
