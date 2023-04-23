@@ -5,6 +5,7 @@ import * as session from "./session";
 import "./style.scss"
 
 const init = async () => ui_session.init(
+    session.existe(),
     session.effacer,
     mdp => session.init(mdp).then(
         () => ui_contenu.init(

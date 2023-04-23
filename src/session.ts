@@ -14,6 +14,8 @@ const defaut = (): Session => {
 
 export var data: Session = defaut();
 
+export const existe = () => cookie.existe(COOKIE);
+
 export const charger = async (mdp: string) => cookie.lire(COOKIE, mdp) as Promise<Session>;
 
 export const sauver = async (mdp: string) => charger(mdp).then(
@@ -26,7 +28,6 @@ export const sauver = async (mdp: string) => charger(mdp).then(
 export const effacer = async () => cookie.supprimer(COOKIE);
 
 export const init = async (mdp: string) => {
-    if (cookie.existe(COOKIE))
-        return charger(mdp).then(_data => data = _data);
+    if (existe()) return charger(mdp).then(_data => data = _data);
     else return cookie.ecrire(COOKIE, data, mdp);
 };
