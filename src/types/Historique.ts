@@ -1,3 +1,3 @@
 import { Performances } from "./Performances";
 
-export type Historique = Map<Date, Performances>;
+export type Historique = Array<[number, Performances]>;

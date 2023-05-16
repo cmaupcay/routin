@@ -1,6 +1,7 @@
 import * as controles from "./contenu/controles";
 import * as data from "./contenu/data";
 import * as routines from "./contenu/routines";
+import * as performances from "./contenu/performances";
 import * as ui from "../utils/ui";
 
 import { Routines } from "../types/Routines";
@@ -13,4 +14,5 @@ export const init = async (_routines: Routines, _historique: Historique, _sauveg
     data.init(_routines, _historique, _sauvegarder);
     controles.init();
     routines.init();
+    performances.init();
 };

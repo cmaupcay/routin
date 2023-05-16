@@ -23,23 +23,26 @@ const init_effacer = async (effacer: Effacer, message: ui.ÉlémentHTML) => {
     );
 };
 
-const init_entrer = async (entrer: Entrer, fenetre: ui.Élément, message: ui.ÉlémentHTML) => {
+const entrer = (f: Entrer, mdp: ui.Champs, fenetre: ui.Élément, message: ui.ÉlémentHTML) => ui.lire(mdp).then(
+    mdp => {
+        if (!!mdp)
+        {
+            ui.ecrire(message, MESSAGE_DECHIFFREMENT);
+            f(mdp).then(
+                () => ui.fermer(fenetre),
+                e => ui.ecrire_erreur(message, e)
+            );
+        }
+    },
+    e => ui.ecrire_erreur(message, e)
+);
+
+const init_entrer = async (_entrer: Entrer, fenetre: ui.Élément, message: ui.ÉlémentHTML) => {
     const mdp = ui.selectionner(SELECTEUR_MDP) as HTMLInputElement;
-    ui.selectionner(SELECTEUR_ENTRER)?.addEventListener("click", 
-        () => ui.lire(mdp).then(
-            mdp => {
-                if (!!mdp)
-                {
-                    ui.ecrire(message, MESSAGE_DECHIFFREMENT);
-                    entrer(mdp).then(
-                        () => ui.fermer(fenetre),
-                        e => ui.ecrire_erreur(message, e)
-                    );
-                }
-            },
-            e => ui.ecrire_erreur(message, e)
-        )
-    );
+    mdp.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") entrer(_entrer, mdp, fenetre, message);
+    });
+    ui.selectionner(SELECTEUR_ENTRER)?.addEventListener("click", () => entrer(_entrer, mdp, fenetre, message));
 }
 
 export const init = async (connu: boolean, effacer: Effacer, entrer: Entrer) => {

@@ -1,5 +1,4 @@
 import * as data from "../data";
-import * as liste from "./liste";
 import * as ui from "../../../utils/ui";
 
 import * as RoutineType from "../../../types/RoutineType";
@@ -29,7 +28,7 @@ const creer_routine = (nom: string, objectif: number, type: RoutineType.type) =>
 const ajout = (champsNom: ui.Champs, champsObjectif: ui.Champs, champsType: ui.ChampsSelection) => {
     if (!!champsNom && !!champsObjectif && !!champsType)
         return () => {
-            ui.lire(champsNom, false).then(nom => {
+            ui.lire(champsNom, false, n => n, n => !data.routines?.map(r => r.nom).includes(n)).then(nom => {
                 if (!!nom)
                     return ui.lire<number>(champsObjectif, true, parseInt, v => v > 0).then(objectif => {
                         if (!!objectif)
@@ -39,7 +38,6 @@ const ajout = (champsNom: ui.Champs, champsObjectif: ui.Champs, champsType: ui.C
                                 champsType.options.item(champsType.selectedIndex)?.id.replace(ROUTINE_TYPE_PREFIX, "") as RoutineType.type
                             );
                             ui.effacer(champsNom);
-                            liste.rafraichir();
                         }
                     })
             });
