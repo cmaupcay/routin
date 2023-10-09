@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project("tensaiji.routin" VERSION "0.0.0")
+project("tensaiji.routin" VERSION "0.1.0")
 
 set(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin")
 set(LIBRARY_OUTPUT_PATH "${EXECUTABLE_OUTPUT_PATH}/bib")
